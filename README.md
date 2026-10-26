@@ -4,6 +4,8 @@ Un clavier parlant pour apprendre à lire en recopiant les mots qui nous entoure
 
 **▶ [steevelefort.github.io/dictee](https://steevelefort.github.io/dictee/)**
 
+![Dictée sur iPad : le mot « École » tapé au-dessus du clavier alphabétique](docs/screenshot.png)
+
 ## Le but
 
 L'enfant recopie, lettre par lettre, un mot qu'il voit autour de lui : sur une boîte de céréales, une affiche, la couverture d'un livre, un panneau… Il appuie ensuite sur le bouton vert, et la tablette lit le mot à voix haute.
@@ -16,12 +18,13 @@ Ce projet reproduit un logiciel écrit il y a une dizaine d'années pour iPad, d
 
 ## Utilisation
 
-- Toucher une lettre l'ajoute au texte affiché en haut de l'écran.
+- Toucher une lettre l'ajoute au texte affiché en haut de l'écran, et la tablette la prononce.
+- La première lettre du texte s'écrit automatiquement en majuscule.
 - **Appui long sur une lettre** : une bulle propose les accents (é è ê ë, à â, ç, ô œ…). Glisser le doigt sur la variante voulue puis relâcher, ou relâcher puis toucher la variante.
 - **Touche rouge** : efface la dernière lettre. Maintenue, elle efface tout le texte (une jauge se remplit).
 - **Touche verte** : lit le texte à voix haute grâce à la synthèse vocale de l'appareil.
 
-Le clavier est alphabétique (et non AZERTY), avec de grandes touches qui affichent à la fois la majuscule et la minuscule.
+Le clavier est alphabétique (et non AZERTY), avec de grandes touches qui affichent à la fois la majuscule (à gauche) et la minuscule (en bas à droite).
 
 ## Installation sur tablette
 

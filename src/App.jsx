@@ -26,6 +26,13 @@ function App() {
     bar.scrollLeft = bar.scrollWidth
   }, [text])
 
+  // Chaque lettre tapée est ajoutée au texte et prononcée seule.
+  // La première lettre du texte est mise en majuscule.
+  const handleKey = (char) => {
+    setText((t) => t + (t.trim() === '' ? char.toUpperCase() : char))
+    speak(char)
+  }
+
   const handleSpeak = () =>
     speak(text, {
       onStart: () => setSpeaking(true),
@@ -39,7 +46,7 @@ function App() {
         <span className="caret" />
       </div>
       <Keyboard
-        onKey={(char) => setText((t) => t + char)}
+        onKey={handleKey}
         onBackspace={() => setText((t) => t.slice(0, -1))}
         onClear={() => setText('')}
         onSpeak={handleSpeak}

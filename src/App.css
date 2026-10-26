@@ -120,16 +120,19 @@
     var(--no) 0 0 var(--outline);
 }
 
+/* Comme sur le modèle : majuscule décalée à gauche, minuscule en bas à droite. */
 .key-upper {
   color: #f4f8c8;
   font-weight: 700;
   font-size: 1.15em;
+  margin-right: 0.3em;
 }
 
 .key-lower {
-  --o: 0.04em;
-  font-size: 0.45em;
-  margin-top: 0.2em;
+  --o: 0.03em;
+  font-size: 0.6em;
+  margin-top: -0.15em;
+  margin-left: 1.5em;
   opacity: 0.9;
 }
 
