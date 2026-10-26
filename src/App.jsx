@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import Keyboard from './Keyboard.jsx'
+import StartScreen from './StartScreen.jsx'
 import { speak } from './speech.js'
 import './App.css'
 
 function App() {
   const [text, setText] = useState('')
   const [speaking, setSpeaking] = useState(false)
+  const [started, setStarted] = useState(false)
   const barRef = useRef(null)
 
   // Sur iOS 12, user-scalable=no et touch-action sont ignorés : on bloque
@@ -52,6 +54,7 @@ function App() {
         onSpeak={handleSpeak}
         speaking={speaking}
       />
+      {!started && <StartScreen onStart={() => setStarted(true)} />}
     </main>
   )
 }
