@@ -1,0 +1,198 @@
+/*
+ * Compatible Safari 12 (iPad mini 2) : pas de container queries, color-mix(),
+ * dvh, inset, ni gap en flexbox. Les teintes du relief sont écrites en dur.
+ */
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #2a1ef0;
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Barre de texte */
+.text-bar {
+  flex: 0 0 22%;
+  display: flex;
+  align-items: center;
+  padding: 0 4vmin;
+  background: #000;
+  color: #fff;
+  font-size: 11vmin;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.caret {
+  flex: none;
+  width: 0.08em;
+  height: 1.1em;
+  margin-left: 0.05em;
+  background: #fff;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Clavier */
+.keyboard {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 1.4vmin;
+  gap: 1.4vmin;
+  padding: 1.6vmin;
+  padding-bottom: max(1.6vmin, env(safe-area-inset-bottom));
+}
+
+/*
+ * Relief : arête claire haut/gauche, arête sombre bas/droite, ombre portée
+ * bas/gauche. Enfoncée, les arêtes s'inversent et l'ombre se réduit.
+ * --light = face + 35 % de blanc, --dark = face assombrie de 30 %.
+ */
+.key {
+  --face: #6a63ff;
+  --light: #9e9aff;
+  --dark: #4a45b3;
+  --bevel: 0.45vmin;
+  --neg-bevel: -0.45vmin;
+
+  position: relative;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 1.6vmin;
+  background: var(--face);
+  box-shadow:
+    inset var(--bevel) var(--bevel) 0 var(--light),
+    inset var(--neg-bevel) var(--neg-bevel) 0 var(--dark),
+    -0.5vmin 0.7vmin 1vmin rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font: inherit;
+  /* Hauteur ≈ 18vh et largeur ≈ 12vw par touche. */
+  font-size: min(6.2vh, 5.5vw);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 60ms, background-color 60ms, box-shadow 60ms;
+}
+
+.key.is-pressed {
+  --face: #8d88ff;
+  --light: #aaa6ff;
+  --dark: #6a66bf;
+  box-shadow:
+    inset var(--bevel) var(--bevel) 0 var(--dark),
+    inset var(--neg-bevel) var(--neg-bevel) 0 var(--light),
+    -0.2vmin 0.25vmin 0.4vmin rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(0.97);
+  transform: scale(0.97);
+}
+
+.key-upper {
+  color: #f4f8c8;
+  font-weight: 700;
+  font-size: 1.15em;
+}
+
+.key-lower {
+  font-size: 0.45em;
+  margin-top: 0.2em;
+  opacity: 0.9;
+}
+
+.key-space {
+  grid-column: span 4;
+}
+
+.key-backspace {
+  --face: #e8314a;
+  --light: #f07989;
+  --dark: #a22234;
+}
+
+.key-backspace.is-pressed {
+  --face: #ff5a70;
+  --light: #ff8394;
+  --dark: #bf4454;
+}
+
+/* Jauge qui se remplit pendant l'appui long : à la fin, tout est effacé. */
+.key-backspace.is-pressed::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 12%;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-transform-origin: left;
+  transform-origin: left;
+  animation: fill var(--clear-ms) linear forwards;
+}
+
+@keyframes fill {
+  from {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+  to {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+.key-speak {
+  --face: #2fe05a;
+  --light: #78eb94;
+  --dark: #219d3f;
+}
+
+.key-speak.is-pressed {
+  --face: #6bff8e;
+  --light: #90ffaa;
+  --dark: #50bf6b;
+}
+
+.key svg {
+  width: 45%;
+  height: 45%;
+}
+
+/* Popup des accents */
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.popup {
+  position: fixed;
+  z-index: 11;
+  display: flex;
+  background: #1a12a8;
+  border-radius: 2vmin;
+  box-shadow: 0 1vmin 4vmin rgba(0, 0, 0, 0.5);
+}
+
+.popup-key {
+  flex: none;
+  font-size: inherit;
+}
