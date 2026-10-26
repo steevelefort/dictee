@@ -1,10 +1,15 @@
 /*
  * Compatible Safari 12 (iPad mini 2) : pas de container queries, color-mix(),
  * dvh, inset, ni gap en flexbox. Les teintes du relief sont écrites en dur.
+ * La hauteur visible vient de --vh (src/viewport.js) : jamais l'unité vh.
  */
 
 .app {
-  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   background: #2a1ef0;
@@ -19,7 +24,7 @@
   padding: 0 4vmin;
   background: #000;
   color: #fff;
-  font-size: 11vmin;
+  font-size: min(calc(var(--vh, 1vh) * 11), 11vw);
   font-weight: 700;
   letter-spacing: 0.04em;
   white-space: pre;
@@ -44,9 +49,12 @@
 /* Clavier */
 .keyboard {
   flex: 1;
+  /* Sans min-height: 0 et minmax(0, …), le contenu des touches peut empêcher
+     le clavier de rétrécir et le faire déborder de l'écran. */
+  min-height: 0;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
   grid-gap: 1.4vmin;
   gap: 1.4vmin;
   padding: 1.6vmin;
@@ -78,8 +86,8 @@
     -0.5vmin 0.7vmin 1vmin rgba(0, 0, 0, 0.3);
   color: #fff;
   font: inherit;
-  /* Hauteur ≈ 18vh et largeur ≈ 12vw par touche. */
-  font-size: min(6.2vh, 5.5vw);
+  /* Hauteur ≈ 18 % de l'écran visible et largeur ≈ 12vw par touche. */
+  font-size: min(calc(var(--vh, 1vh) * 6.2), 5.5vw);
   padding: 0;
   display: flex;
   flex-direction: column;
