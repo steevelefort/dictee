@@ -20,7 +20,7 @@
   background: #000;
   color: #fff;
   font-size: 11vmin;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.04em;
   white-space: pre;
   overflow: hidden;
@@ -102,6 +102,24 @@
   transform: scale(0.97);
 }
 
+/* Contour gris foncé autour des lettres : text-shadow dans 8 directions
+   (-webkit-text-stroke rognerait l'intérieur des lettres). */
+.key-upper,
+.key-lower {
+  --outline: #4f4f63;
+  --o: 0.022em;
+  --no: calc(-1 * var(--o));
+  text-shadow:
+    var(--no) var(--no) 0 var(--outline),
+    0 var(--no) 0 var(--outline),
+    var(--o) var(--no) 0 var(--outline),
+    var(--o) 0 0 var(--outline),
+    var(--o) var(--o) 0 var(--outline),
+    0 var(--o) 0 var(--outline),
+    var(--no) var(--o) 0 var(--outline),
+    var(--no) 0 0 var(--outline);
+}
+
 .key-upper {
   color: #f4f8c8;
   font-weight: 700;
@@ -109,6 +127,7 @@
 }
 
 .key-lower {
+  --o: 0.04em;
   font-size: 0.45em;
   margin-top: 0.2em;
   opacity: 0.9;
@@ -168,8 +187,18 @@
 }
 
 .key svg {
-  width: 45%;
-  height: 45%;
+  width: 62%;
+  height: 62%;
+  overflow: visible;
+}
+
+/* Forme blanche des icônes, avec le même contour que les lettres. */
+.icon-shape {
+  fill: #fff;
+  stroke: #4f4f63;
+  stroke-width: 1;
+  stroke-linejoin: round;
+  paint-order: stroke;
 }
 
 /* Popup des accents */

@@ -18,7 +18,7 @@ function KeyLabel({ char }) {
 function BackspaceIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M8 5h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H8l-6-7z" fill="#fff" />
+      <path className="icon-shape" d="M8 5h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H8l-6-7z" />
       <path
         d="M11 9l6 6m0-6l-6 6"
         stroke="#e8314a"
@@ -32,7 +32,7 @@ function BackspaceIcon() {
 function SpeakIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 4h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" fill="#fff" />
+      <path className="icon-shape" d="M4 4h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" />
       <path d="M12 7v4.5" stroke="#22c04a" strokeWidth="2.2" strokeLinecap="round" />
       <circle cx="12" cy="13.6" r="1.2" fill="#22c04a" />
     </svg>
